@@ -23,11 +23,7 @@ jobs:
           pip install pyinstaller customtkinter
 
       - name: Build Windows executable
-        run: |
-          pyinstaller --onefile --noconsole --hidden-import customtkinter \
-          --add-data "fonts/FreeSans/freesansbold.ttf;fonts" \
-          --icon "Icons/Taxi_1.ico" \
-          main.py
+        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --add-data "fonts/FreeSans/freesansbold.ttf;fonts" --icon "Icons/Taxi_1.ico" main.py
 
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v4
@@ -51,10 +47,7 @@ jobs:
           pip install pyinstaller customtkinter
 
       - name: Build Linux executable
-        run: |
-          pyinstaller --onefile --noconsole --hidden-import customtkinter \
-          --add-data "fonts/FreeSans/freesansbold.ttf:fonts" \
-          main.py
+        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --add-data "fonts/FreeSans/freesansbold.ttf:fonts" main.py
 
       - name: Upload Linux artifact
         uses: actions/upload-artifact@v4
@@ -78,11 +71,7 @@ jobs:
           pip install pyinstaller customtkinter
 
       - name: Build macOS executable
-        run: |
-          pyinstaller --onefile --noconsole --hidden-import customtkinter \
-          --add-data "fonts/FreeSans/freesansbold.ttf:fonts" \
-          --icon "Icons/Taxi_1.icns" \
-          main.py
+        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --add-data "fonts/FreeSans/freesansbold.ttf:fonts" --icon "Icons/Taxi_1.icns" main.py
 
       - name: Upload macOS artifact
         uses: actions/upload-artifact@v4
