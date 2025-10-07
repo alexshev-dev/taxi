@@ -82,14 +82,15 @@ jobs:
 
       - name: Build macOS executable
         run: |
-          pyinstaller --onefile --noconsole \
+          pyinstaller --onedir --noconsole \
             --hidden-import customtkinter \
             --hidden-import fpdf \
             --add-data "fonts/FreeSans/freesansbold.ttf:fonts" \
-            --icon "Icons/Taxi_1.icns" main.py
+            --icon "Icons/Taxi_1.icns" \
+            -y main.py
 
       - name: Upload macOS artifact
         uses: actions/upload-artifact@v4
         with:
           name: Taxi_testing-macos
-          path: dist/main
+          path: dist/main.app
