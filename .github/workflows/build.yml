@@ -10,20 +10,27 @@ jobs:
   build-windows:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyinstaller customtkinter
+          pip install pyinstaller customtkinter fpdf
 
       - name: Build Windows executable
-        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --hidden-import fpdf --add-data "fonts/FreeSans/freesansbold.ttf;fonts" main.py
+        shell: pwsh
+        run: |
+          pyinstaller --onefile --noconsole `
+            --hidden-import customtkinter `
+            --hidden-import fpdf `
+            --add-data "fonts/FreeSans/freesansbold.ttf;fonts" `
+            --icon "Icons/Taxi_1.ico" main.py
+
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v4
         with:
@@ -33,20 +40,24 @@ jobs:
   build-linux:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyinstaller customtkinter
+          pip install pyinstaller customtkinter fpdf
 
       - name: Build Linux executable
-        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --hidden-import fpdf --add-data "fonts/FreeSans/freesansbold.ttf:fonts" main.py
+        run: |
+          pyinstaller --onefile --noconsole \
+            --hidden-import customtkinter \
+            --hidden-import fpdf \
+            --add-data "fonts/FreeSans/freesansbold.ttf:fonts" main.py
 
       - name: Upload Linux artifact
         uses: actions/upload-artifact@v4
@@ -57,20 +68,25 @@ jobs:
   build-macos:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pyinstaller customtkinter
+          pip install pyinstaller customtkinter fpdf
 
       - name: Build macOS executable
-        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --hidden-import fpdf --add-data "fonts/FreeSans/freesansbold.ttf:fonts" --icon "Icons/Taxi_1.icns" main.py
+        run: |
+          pyinstaller --onefile --noconsole \
+            --hidden-import customtkinter \
+            --hidden-import fpdf \
+            --add-data "fonts/FreeSans/freesansbold.ttf:fonts" \
+            --icon "Icons/Taxi_1.icns" main.py
 
       - name: Upload macOS artifact
         uses: actions/upload-artifact@v4
