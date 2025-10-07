@@ -30,7 +30,7 @@ jobs:
           main.py
 
       - name: Upload Windows artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Taxi_testing-windows
           path: dist/main.exe
@@ -57,8 +57,35 @@ jobs:
           main.py
 
       - name: Upload Linux artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Taxi_testing-linux
           path: dist/main
 
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller customtkinter
+
+      - name: Build macOS executable
+        run: |
+          pyinstaller --onefile --noconsole --hidden-import customtkinter \
+          --add-data "fonts/FreeSans/freesansbold.ttf:fonts" \
+          --icon "Icons/Taxi_1.icns" \
+          main.py
+
+      - name: Upload macOS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Taxi_testing-macos
+          path: dist/main
