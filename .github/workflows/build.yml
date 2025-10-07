@@ -19,7 +19,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: python -m pip install --upgrade pip && pip install pyinstaller customtkinter fpdf2 simpleeval json platform re
+        run: python -m pip install --upgrade pip && pip install pyinstaller customtkinter fpdf2 simpleeval platform re
 
       - name: Build Windows executable
         shell: pwsh
