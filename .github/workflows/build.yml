@@ -71,7 +71,7 @@ jobs:
           pip install pyinstaller customtkinter
 
       - name: Build macOS executable
-        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --add-data "fonts/FreeSans/freesansbold.ttf:fonts" --icon "Icons/Taxi_1.icns" main.py
+        run: pyinstaller --onedir --noconsole --hidden-import customtkinter --add-data "fonts/FreeSans/freesansbold.ttf:fonts" --icon "Icons/Taxi_1.icns" -y main.py
 
       - name: Upload macOS artifact
         uses: actions/upload-artifact@v4
