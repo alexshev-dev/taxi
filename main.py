@@ -261,9 +261,9 @@ year_box = ctk.CTkComboBox(root, values=years, width=90)
 
 car_box_brand = ctk.CTkComboBox(root, values=list(auto_data.keys()), command=choice_brand, width=120)
 car_box_brand.set("")
-car_box_model = ctk.CTkComboBox(root, values=list(auto_data['Honda'].keys()), command=choice_model, width=120)
+car_box_model = ctk.CTkComboBox(root, values=list(auto_data[''].keys()), command=choice_model, width=120)
 car_box_model.set("")
-car_box_number = ctk.CTkComboBox(root, values=list(auto_data['Honda']['Accord']), width=120)
+car_box_number = ctk.CTkComboBox(root, values=list(auto_data['']['']), width=120)
 car_box_number.set("")
 
 day_box.place(x=10, y=26)
@@ -628,7 +628,7 @@ def show_data(selected_month=None):
 
         output += (
                 f"\t    --- {entry['Дата']} ---".upper() + "\n"
-                                                           f"\t{entry.get('АВТО', '')}".upper() + "\n"
+                f"\t{entry.get('АВТО', '')}".upper() + "\n"
                 # f"Початок зміни: {entry['Початок зміни']}\n"
                 # f"Перерва: {entry['Перерва']}\n"
                 # f"Кінець зміни: {entry['Кінець зміни']}\n"
