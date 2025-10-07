@@ -23,7 +23,7 @@ jobs:
 
       - name: Build Windows executable
         shell: pwsh
-        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --hidden-import fpdf --hidden-import simpleeval --hidden-import json --hidden-import os --hidden-import platform  --hidden-import re --hidden-import datetime --add-data "fonts/FreeSans/freesansbold.ttf;fonts" main.py
+        run:  pyinstaller --onefile --noconsole --hidden-import customtkinter --hidden-import fpdf --hidden-import fpdf._templates --hidden-import simpleeval --add-data "fonts/FreeSans/freesansbold.ttf;fonts" main.py
 
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v4
