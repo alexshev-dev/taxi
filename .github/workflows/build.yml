@@ -18,11 +18,12 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: python -m pip install --upgrade pip && pip install pyinstaller customtkinter fpdf
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller customtkinter fpdf
 
       - name: Build Windows executable
-        shell: pwsh
-        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --hidden-import fpdf --add-data "fonts/FreeSans/freesansbold.ttf;fonts" -y main.py
+        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --hidden-import fpdf --add-data "fonts/FreeSans/freesansbold.ttf;fonts" main.py
 
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v4
@@ -41,10 +42,12 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: python -m pip install --upgrade pip && pip install pyinstaller customtkinter fpdf
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller customtkinter fpdf
 
       - name: Build Linux executable
-        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --hidden-import fpdf --add-data "fonts/FreeSans/freesansbold.ttf:fonts" -y main.py
+        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --hidden-import fpdf --add-data "fonts/FreeSans/freesansbold.ttf:fonts" main.py
 
       - name: Upload Linux artifact
         uses: actions/upload-artifact@v4
@@ -63,9 +66,11 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: python -m pip install --upgrade pip && pip install pyinstaller customtkinter fpdf
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller customtkinter fpdf
 
-      - name: Build macOS executable
+      - name: Build macOS .app
         run: pyinstaller --onedir --noconsole --hidden-import customtkinter --hidden-import fpdf --add-data "fonts/FreeSans/freesansbold.ttf:fonts" --icon "Icons/Taxi_1.icns" -y main.py
 
       - name: Upload macOS artifact
