@@ -76,7 +76,7 @@ jobs:
         run: rm -rf dist/main.app build/
 
       - name: Build macOS executable
-        run: pyinstaller --onedir --noconsole --hidden-import customtkinter --hidden-import fpdf --add-data "fonts/FreeSans/freesansbold.ttf:fonts" --icon "Icons/Taxi_1.icns" -y main.py
+        run: pyinstaller --onefile --noconsole --hidden-import customtkinter --hidden-import fpdf --add-data "fonts/FreeSans/freesansbold.ttf:fonts" main.py
 
       - name: Check main file
         run: ls -l dist/main.app/Contents/MacOS/
