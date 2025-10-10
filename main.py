@@ -29,7 +29,7 @@ def get_data_path(app_name = "TaxiApp"):
 
 fname = get_data_path()
 
-# fname = "/Users/dim/PythonProjects/Taxi_testing/data/data.json"
+# fname = "/Users/dim/PythonProjects/Taxi/data/data.json"
 
 data_window = None
 
@@ -211,16 +211,12 @@ auto_data = {
 def choice_brand(brand):
     models = list(auto_data.get(brand, {}).keys())
     car_box_model.configure(values=models)
-    car_box_model.set("Модель авто")
-    car_box_number.set("Номер авто")
-    car_box_number.configure(values=[])
-
 
 def choice_model(model):
     brand = car_box_brand.get()
     numbers = auto_data.get(brand, {}).get(model, [])
     car_box_number.configure(values=numbers)
-    car_box_number.set("Номер авто")
+
 
 
 # ===== Labels =====
@@ -260,11 +256,11 @@ month_box = ctk.CTkComboBox(root, values=months, width=100)
 year_box = ctk.CTkComboBox(root, values=years, width=90)
 
 car_box_brand = ctk.CTkComboBox(root, values=list(auto_data.keys()), command=choice_brand, width=120)
-car_box_brand.set("")
-car_box_model = ctk.CTkComboBox(root, values=list(auto_data[''].keys()), command=choice_model, width=120)
-car_box_model.set("")
-car_box_number = ctk.CTkComboBox(root, values=list(auto_data['']['']), width=120)
-car_box_number.set("")
+car_box_brand.set('Марка')
+car_box_model = ctk.CTkComboBox(root, values=[], command=choice_model, width=120)
+car_box_model.set("Модель")
+car_box_number = ctk.CTkComboBox(root, values=[], width=120)
+car_box_number.set("Номер")
 
 day_box.place(x=10, y=26)
 month_box.place(x=90, y=26)
@@ -694,8 +690,8 @@ def show_data(selected_month=None):
 
         pdf = FPDF()
         pdf.add_page()
-        pdf.add_font('DejaVu', '', '/Users/dim/PythonProjects/Taxi_testing/fonts/djsans/DejaVuSans.ttf')
-        pdf.add_font('DejaVuBold', '', '/Users/dim/PythonProjects/Taxi_testing/fonts/djsans/DejaVuSans-Bold.ttf')
+        pdf.add_font('DejaVu', '', '/Users/dim/PythonProjects/Taxi/fonts/djsans/DejaVuSans.ttf')
+        pdf.add_font('DejaVuBold', '', '/Users/dim/PythonProjects/Taxi/fonts/djsans/DejaVuSans-Bold.ttf')
 
         pdf.set_font('DejaVuBold', '', 22)
         pdf.cell(0, 10, "Статистика", new_x=XPos.LMARGIN, new_y=YPos.NEXT, align="C")
